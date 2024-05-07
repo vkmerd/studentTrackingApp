@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="top-menu">
+            <div class="logo">
+                <img src="assets/images/acunmedya-akademi-logo-siyah.png" alt="">
+            </div>
+            <div class="title">
+                Acunmedya Akademi Öğrenci Takip Sistemi!
+            </div>
+            <div class="tabs">
+                <a class="button live" data-id="step1">Öğrenci Kayıt Formu / </a>
+                <a class="button" data-id="step2">Öğrenci Yoklama Formu</a>
+            </div>
+        </div>
+
+        <div class="tabs-content">
+            <div class="containers">
+                <div id="step1" class="content live">
+                    <h2 class="registerTitle">Öğrenci Kayıt Formu:</h2>
+                    <div class="registerFormContainer">
+                        <div class="registerCont35">
+                            <form id="registerForm">
+                                <input type="text" name="student_name" placeholder="Öğrenci Adı:">
+                                <input type="text" name="student_surname" placeholder="Öğrenci Soyadı:">
+                                <input type="email" name="stemail_address"  placeholder="Öğrenci Email Adresi:">
+                                <input type="text" name="student_id"  placeholder="Öğrenci Numarası:">
+                                <select id="classLesson">Dersi:
+                                    <option value="FrontEnd">FrontEnd</option>
+                                    <option value="Backend">Backend</option>
+                                </select>
+                                <input class="formSubmit" type="submit" placeholder="Kaydet">
+                            </form>
+                        </div>
+                        <div class="registerCont65">
+                            <div class="registersList"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="step2" class="content">
+                    <h2 class="registerTitle">Öğrenci Yoklama Formu:</h2>
+                        <div class="registerFormContainer">
+                            <div class="registerCont35">
+                                <form id="registerForm">
+                                    <input type="text" name="student_name" placeholder="Öğrenci Adı:">
+                                    <input type="text" name="student_surname" placeholder="Öğrenci Soyadı:">
+                                    <input type="email" name="stemail_address"  placeholder="Öğrenci Email Adresi:">
+                                    <input type="text" name="student_id"  placeholder="Öğrenci Numarası:">
+                                    <select id="classLesson" name="classLesson">
+                                        <option value="Fronted" id="frontendOption" data-description="Frontend development techniques">FrontEnd</option>
+                                        <option value="Backend" id="backendOption" data-description="Backend integration methods">Backend</option>
+                                    </select>
+                                    <input class="formSubmit" type="submit" placeholder="Kaydet">
+                                </form>
+                            </div>
+                            <div class="registerCont65"></div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+</html>
