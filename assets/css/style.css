@@ -43,6 +43,7 @@ body{
     a{
         font-family: var(--first-font);
         font-weight: 700;
+        cursor: pointer;
     }
 }
 .live {
