@@ -4,8 +4,9 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)   
 const registerForm = document.querySelector("#registerForm")
 console.log(_supabase);
-    const tabs = document.querySelectorAll('.tabs .button');
-    const contents = document.querySelectorAll('.tabs-content .content');
+
+const tabs = document.querySelectorAll('.tabs .button');
+const contents = document.querySelectorAll('.tabs-content .content');
 const registersList = document.querySelector(".registersList")
     tabs.forEach(tab => {
         tab.addEventListener('click', function() {
@@ -25,6 +26,23 @@ const registersList = document.querySelector(".registersList")
     if (tabs.length > 0) {
         tabs[0].click();
     }
+
+async function loadStudents(){
+    const { data, error } = await _supabase.from('students').select().limit(8)
+    registersList.innerHTML = '';
+    data.forEach(students => registersList.innerHTML += `
+    <ul class="studentinfo">
+        <li>${students.student_name}</li>
+        <li>${students.student_surname}</li>
+        <li>${students.stemail_address}</li>
+        <li>${students.student_id}</li>
+        <li>${students.selectedLessonValue}</li>
+    </ul>
+    `
+    )
+}
+
+document.addEventListener('DOMContentLoaded', loadStudents);
 
     async function registerConnect(e) {
         e.preventDefault(); 
@@ -55,18 +73,16 @@ const registersList = document.querySelector(".registersList")
     
             if (error) throw error;
             console.log('Kayıt başarılı:', data);
+            registerForm.reset();
+            loadStudents();
+            
             
         } catch (error) {
             console.error('Kayıt hatası:', error.message);
         }
-    
-        registerForm.reset();
-    
-        registersList.innerHTML += `
-        <p>${formObject['stemail_address']}</p>`;
-        return;
+        
     }
     
-    
 registerForm.addEventListener('submit', registerConnect)
+
 
