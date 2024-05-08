@@ -4,10 +4,12 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)   
 const registerForm = document.querySelector("#registerForm")
 console.log(_supabase);
-
+let uniqueId = 0
 const tabs = document.querySelectorAll('.tabs .button');
 const contents = document.querySelectorAll('.tabs-content .content');
 const registersList = document.querySelector(".registersList")
+const rcollContainer = document.querySelector(".rcollContainer")
+
     tabs.forEach(tab => {
         tab.addEventListener('click', function() {
             const tabId = this.getAttribute('data-id');
@@ -85,4 +87,39 @@ document.addEventListener('DOMContentLoaded', loadStudents);
     
 registerForm.addEventListener('submit', registerConnect)
 
+async function studentRollColl(){
+    const { data, error } = await _supabase.from('students').select()
+    rcollContainer.innerHTML = '';
+    
+    for(let i =0 ; i<data.length;i++ ){
+        let rolStudent = data[i];
+        uniqueId++
+        rcollContainer.innerHTML += `
+            <div class="rColUser" data-student-id="${uniqueId}">
+                    <div class="rtitle">
+                        <h3>${rolStudent.student_name}  ${rolStudent.student_surname}</h3>
+                    </div>
+                    <div class="rbutton">
+                        <button class="comegreenButton" data-student-id="${uniqueId}">Geldi</div>
+                        <button class="comeredButton" data-student-id="${uniqueId}">Gelmedi</div>
+                    </div>
+            </div>
+    `;
+    }
 
+    const comegreenButton = document.querySelectorAll(".comegreenButton")
+    comegreenButton.forEach((updateBtn,index) => {
+        updateBtn.addEventListener("click",function(){
+            console.log("geldi" , Number(this.dataset.studentId ),"ve", data[index].id);
+        })
+    });
+
+    const comeredButton = document.querySelectorAll(".comeredButton")
+    comeredButton.forEach((deleteBtn,index) => {
+        deleteBtn.addEventListener("click",function(){
+            console.log("gelmedi" , Number(this.dataset.studentId ),"ve", data[index].id);
+        })
+    });
+}
+
+studentRollColl();

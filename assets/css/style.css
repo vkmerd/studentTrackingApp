@@ -156,3 +156,34 @@ select#classLesson option{
     font-family: var(--first-font);
     color: #000;
 }
+
+.rcollContainer{
+    display:grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 40px;
+}
+
+.rColUser{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comegreenButton{
+    background-color: green;
+    padding: 15px;
+    font-family: var(--first-font);
+    font-size: 12px;
+    color: #fff;
+    margin: 0 10px;
+}
+
+.comeredButton{
+    background-color: red;
+    padding: 15px;
+    font-family: var(--first-font);
+    font-size: 12px;
+    color: #fff;
+    margin: 0 10px;
+
+}
