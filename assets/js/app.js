@@ -109,15 +109,25 @@ async function studentRollColl(){
 
     const comegreenButton = document.querySelectorAll(".comegreenButton")
     comegreenButton.forEach((updateBtn,index) => {
-        updateBtn.addEventListener("click",function(){
+        updateBtn.addEventListener("click",async function(){
             console.log("geldi" , Number(this.dataset.studentId ),"ve", data[index].id);
+            const studentId = data[index].id;
+            await _supabase
+                .from('students')
+                .update({ roll_call: 'Geldi' })
+                .eq('id', studentId);
         })
     });
 
     const comeredButton = document.querySelectorAll(".comeredButton")
     comeredButton.forEach((deleteBtn,index) => {
-        deleteBtn.addEventListener("click",function(){
+        deleteBtn.addEventListener("click",async function(){
             console.log("gelmedi" , Number(this.dataset.studentId ),"ve", data[index].id);
+            const studentId = data[index].id;
+            await _supabase
+                .from('students')
+                .update({ roll_call: 'Geldi' })
+                .eq('id', studentId);
         })
     });
 }
